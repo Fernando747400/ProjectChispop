@@ -1,5 +1,6 @@
 //Fernando Cossio 9/11/2021  Name and date of creation is necessary 
-//Diana Ramos 10/11/2021 renamed variables   Name of the last person edited, date and a very breif general explanation of what was changed. 
+//Diana Ramos 10/11/2021 renamed variables   Name of the last person edited, date and a very breif general explanation of what was changed.
+//I made this code when I was drunk, only god knows how it works. Hours wasted here: 12.  
 
 using System.Collections;
 using System.Collections.Generic;
