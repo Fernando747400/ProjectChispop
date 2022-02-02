@@ -23,6 +23,7 @@ namespace com.LazyGames.Chispop
         public Mesh bulletMesh;
         public GameObject Bullet;
         public GameObject SpawnerPosition;
+        public GameObject Weapon;
         //-----------------------------------------------------
 
         private ShootPlayer shootPlayer;
@@ -30,6 +31,8 @@ namespace com.LazyGames.Chispop
         private InputController.PlayerActions playerActions;
         private Vector2 mouseDirection;
         private Vector3 shootDirection;
+
+        public GameObject[] Bullets = new GameObject[5];
 
         //New transform when it's picked up
         public GameObject gunPosition;
@@ -62,10 +65,10 @@ namespace com.LazyGames.Chispop
             Bullet = weaponTest.Bullet;
         }
         private void Update()
-        {
-
+        { 
             if(IsParent == true)
             {
+                //Weapon.transform.rotation = Quaternion.Euler(shootDirection);
                 if (cadence > 0)
                 {
                     cadence -= Time.deltaTime;
@@ -81,8 +84,11 @@ namespace com.LazyGames.Chispop
         }
         void SpawnBullet()
         {
-            Instantiate(Bullet, SpawnerPosition.transform.position, transform.rotation);
-            Bullet.transform.position = shootDirection * speed * Time.deltaTime;
+            GameObject Selected = Bullets[Random.Range(0, 5)];
+            GameObject newBullet = Instantiate(Selected, SpawnerPosition.transform.position, SpawnerPosition.transform.rotation);
+            //Instantiate(Bullet, SpawnerPosition.transform.position, transform.rotation);
+            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * speed;
+            //newBullet.transform.position = shootDirection * speed * Time.deltaTime;
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -91,6 +97,7 @@ namespace com.LazyGames.Chispop
                 IsParent = true;
                 this.transform.SetParent(GameObject.Find("Player").transform);
                 this.transform.position = gunPosition.transform.position;
+                this.transform.rotation = GameObject.Find("Player").transform.rotation;
                 print("parentado xd");
             }
         }
