@@ -1,4 +1,4 @@
-//Aviles con Acento en la Z makes love to this script
+//Aviles con Acento en la Z makes love to this script <3
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,11 +25,31 @@ namespace com.LazyGames.Chispop
         public GameObject SpawnerPosition;
         //-----------------------------------------------------
 
+        private ShootPlayer shootPlayer;
+        private InputController inputController;
+        private InputController.PlayerActions playerActions;
+        private Vector2 mouseDirection;
+        private Vector3 shootDirection;
+
         //New transform when it's picked up
         public GameObject gunPosition;
         private bool IsParent;
+
+        public void Awake()
+        {
+            inputController = new InputController();
+            shootPlayer = gameObject.GetComponent<ShootPlayer>();
+            playerActions = inputController.Player;
+            playerActions.MousePosition.performed += ctx => mouseDirection = ctx.ReadValue<Vector2>();
+            playerActions.Shoot.performed += _ => shootPlayer.ShootWeapon();
+        }
+
         void Start()
         {
+            shootDirection = Camera.main.ScreenToWorldPoint(mouseDirection);
+            shootDirection = shootDirection.normalized;
+
+
             weaponName = weaponTest.codeName;
             damage = weaponTest.damage;
             speed = weaponTest.speed;
@@ -43,6 +63,7 @@ namespace com.LazyGames.Chispop
         }
         private void Update()
         {
+
             if(IsParent == true)
             {
                 if (cadence > 0)
@@ -55,10 +76,13 @@ namespace com.LazyGames.Chispop
                     cadence = weaponTest.cadence;
                 }
             }
+
+
         }
         void SpawnBullet()
         {
             Instantiate(Bullet, SpawnerPosition.transform.position, transform.rotation);
+            Bullet.transform.position = shootDirection * speed * Time.deltaTime;
         }
         private void OnTriggerEnter(Collider other)
         {
