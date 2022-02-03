@@ -20,6 +20,8 @@ namespace com.LazyGames.Chispop
             inputController = new InputController();
             playerActions = inputController.Player;
 
+            //Syntax to pass events of Input 
+            //ShootWeapon is the method inside ShootPlayer Script
             playerActions.Shoot.performed += _ => shootPlayer.ShootWeapon();
             playerActions.Movement.performed += ctx => horizontalInput = ctx.ReadValue<Vector2>();
             playerActions.MousePosition.performed += ctx => mouseDirection = ctx.ReadValue<Vector2>();
@@ -27,8 +29,11 @@ namespace com.LazyGames.Chispop
 
         private void FixedUpdate()
         {
+            // Fixed the  player movement 
             movementPlayerController.ReceiveInput(horizontalInput,mouseDirection);
         }
+        
+        //DO NOT TOUCH
         private void OnEnable()
         {
             inputController.Enable();

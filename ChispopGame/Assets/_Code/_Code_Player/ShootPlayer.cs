@@ -19,6 +19,7 @@ namespace com.LazyGames.Chispop
         
         }
 
+        //Method who action shoot of player
         public void ShootWeapon()
         {
             if (!canShoot) return;
