@@ -331,11 +331,11 @@ MonoBehaviour:
   SpawnerPosition: {fileID: 1613638377}
   Weapon: {fileID: 0}
   Bullets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4721480019887039519, guid: c5d4c36bc8f54e84c90063a5b5c60508, type: 3}
+  - {fileID: 4721480019887039519, guid: c5d4c36bc8f54e84c90063a5b5c60508, type: 3}
+  - {fileID: 4721480019887039519, guid: c5d4c36bc8f54e84c90063a5b5c60508, type: 3}
+  - {fileID: 4721480019887039519, guid: c5d4c36bc8f54e84c90063a5b5c60508, type: 3}
+  - {fileID: 4721480019887039519, guid: c5d4c36bc8f54e84c90063a5b5c60508, type: 3}
   gunPosition: {fileID: 224170801}
 --- !u!65 &611607107
 BoxCollider:
