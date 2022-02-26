@@ -8,35 +8,45 @@ namespace com.LazyGames.Chispop
     public class ShootPlayer : MonoBehaviour
     {
         [SerializeField] public bool canShoot = true;
-        
+        [SerializeField] private Weapon_Controller currentWeapon;
+
+        public Weapon_Controller CurrentWeapon
+        {
+            get { return currentWeapon; }
+            set { currentWeapon = value; }
+        }
+
         void Start()
         {
-        
+            
         }
         
         void Update()
         {
-        
+            
         }
-
-        //Method who action shoot of player
         public void ShootWeapon()
         {
-            if (!canShoot) return;
-            
-            Debug.Log("Shoot");
-            StartCoroutine(CanShoot());
+           if(currentWeapon == null)
+            {
+                return;
+            }
+            else
+            {
+                if (!canShoot) return;
 
+                Debug.Log("Shoot");
+                currentWeapon.AbleToShoot();
+                StartCoroutine(CanShoot());
+            }
         }
-
         IEnumerator CanShoot()
         {
             canShoot = false;
-            yield return new WaitForSeconds(1f);
+           
+            yield return new WaitForSeconds(currentWeapon.cadence);
             canShoot = true;
         }
-        
-        
     }
 }
 

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   codeName: Test
   damage: 1
-  speed: 10
-  capacity: 5
+  speed: 50
+  capacity: 2
   cadence: 1
   range: 5
+  reloadTime: 3
   weaponMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   bulletMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  Bullet: {fileID: 224627024279235724, guid: ac3bd3a0268424e469afc21267289681, type: 3}
+  Bullet: {fileID: 4721480019887039519, guid: c5d4c36bc8f54e84c90063a5b5c60508, type: 3}

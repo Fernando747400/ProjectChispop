@@ -9,7 +9,7 @@ namespace com.LazyGames.Chispop
         //I think it could be useful have a set or codename for every combination or for each enemy but i wonder how could we implement that xd
         public string codeName;
         //These ones represents all the stats that the gun use in every time
-        public float damage, speed, capacity, cadence, range;
+        public float damage, speed, capacity, cadence, range, reloadTime;
 
         //These variables are for all the visuals and effects of the gun
         //I don't know how the effects and particles will be implemented, so I put out "shootEffect", "particles", etc.
