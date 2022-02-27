@@ -5,7 +5,7 @@ using com.LazyGames.Chispop;
 using UnityEngine;
 using UnityEditor;
 //If you want to test change the typeof to the name of the class you what to test
-[CustomEditor(typeof(EnemyController))]
+[CustomEditor(typeof(PlayerController))]
 public class TestEditor : Editor
 {
    //This Script is only for testing usages 
@@ -14,7 +14,7 @@ public class TestEditor : Editor
       DrawDefaultInspector();
       // PlayerController playerController = target as PlayerController;
       //Change the next line 
-      EnemyController enemyController = target as EnemyController;
+      PlayerController enemyController = target as PlayerController;
       
 
       if (GUILayout.Button("Create Health or Get health"))
@@ -36,7 +36,7 @@ public class TestEditor : Editor
          }
       }
       
-      if (GUILayout.Button("Make Damage to Enemy"))
+      if (GUILayout.Button("Make Damage to Player"))
       {
          if (Application.isPlaying)
          {
@@ -45,7 +45,7 @@ public class TestEditor : Editor
          }
       }
       
-       if (GUILayout.Button("Heal Enemy"))
+       if (GUILayout.Button("Heal Player"))
       {
          if (Application.isPlaying)
          {

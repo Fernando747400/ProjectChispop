@@ -1,4 +1,4 @@
-//Diana Ramos 09/02/22 Creation of the script
+//Diana Ramos 27/02/22 Changes in the health system
 
 using System;
 using System.Collections;
@@ -10,7 +10,7 @@ namespace com.LazyGames.Chispop
 {
     public class EnemyController : MonoBehaviour
     {
-        [SerializeField] private Transform pfHealthBar;
+        [SerializeField] private Transform UIHealthBar;
         [SerializeField] private int healthEnemy;
 
         private HealthBar healthBar;
@@ -34,15 +34,15 @@ namespace com.LazyGames.Chispop
         {
             if (!healthSystemIsAlreadyCreated)
             {
-                healthSystem = new HealthSystem(100);
-                healthSystemIsAlreadyCreated = true;
+                PrepareHealthSystem();
             }
             else
             {
-                Debug.Assert(healthSystemIsAlreadyCreated, "The player already has life");
+                Debug.Assert(healthSystemIsAlreadyCreated, "The enemy already has life");
             }
             HandleEnemyStates();
         }
+        
 
         private void HandleEnemyStates()
         {
@@ -51,25 +51,36 @@ namespace com.LazyGames.Chispop
                 if (healthSystem.GetHealth() > 0)
                 {
                     EnemyState = EnemyStates.Alive;
-                    Debug.Log("Enemy is = " + EnemyState);
+                    Debug.Log("<color=#ADFF44>Enemy is = </color>" + EnemyState);
                 }
                 else
                 {
                     EnemyState = EnemyStates.Dead;
-                    Debug.Log("Enemy is = " + EnemyState);
+                    Debug.Log("<color=#ADFF44>Enemy is = </color>" + EnemyState);
                 }
             }
         }
 
-        //Testing Health System
+        private void PrepareHealthSystem()
+        {
+            healthSystem = new HealthSystem(healthEnemy);
+            healthBar = UIHealthBar.GetComponent<HealthBar>();
+            healthBar.SetUp(healthSystem);
+            Debug.Log("<color=#ADFF44> Create health to = </color>"+ this.name +healthSystem.GetHealth());
+            healthSystemIsAlreadyCreated = true;
+        }
 
+        
+        
+
+        //Testing Health System
         #region TestHeal
         public void InitializeOrGetHealth()
         {
             if (healthSystem == null)
             {
                 Debug.Log("<color=#F97C13>Create Enemy Health</color>");
-                healthBar = pfHealthBar.GetComponent<HealthBar>();
+                healthBar = UIHealthBar.GetComponent<HealthBar>();
                 healthSystem = new HealthSystem(healthEnemy);
             }
             healthBar.SetUp(healthSystem);
@@ -79,7 +90,6 @@ namespace com.LazyGames.Chispop
         public void GetHealthPercent()
         {
             healthSystem.ReceiveDamage(10);
-            healthBar.SetUp(healthSystem);
             Debug.Log(healthSystem.GetHealthPercent());
         }
 
@@ -91,7 +101,6 @@ namespace com.LazyGames.Chispop
                 Debug.Log("<color=#BEFF6C> Player Sate is  = </color>" + EnemyState);
             }
             healthSystem.ReceiveDamage(10);
-            healthBar.SetUp(healthSystem);
             Debug.Log(healthSystem.GetHealth());
             
         }
@@ -99,7 +108,6 @@ namespace com.LazyGames.Chispop
         public void PlayerReceiveHeal()
         {
             healthSystem.ReceiveHealing(10);
-            healthBar.SetUp(healthSystem);
             Debug.Log(healthSystem.GetHealth());
         }
         #endregion

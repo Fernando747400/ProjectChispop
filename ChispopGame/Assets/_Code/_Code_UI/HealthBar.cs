@@ -7,7 +7,7 @@ namespace com.LazyGames.Chispop
 {
     public class HealthBar : MonoBehaviour
     {
-        [SerializeField]private RectTransform bar;
+        [SerializeField] private RectTransform bar;
         
         private HealthSystem healthSystem;
         

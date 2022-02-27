@@ -16,7 +16,7 @@ namespace com.LazyGames.Chispop
         private int _health;
         private int _healthMax;
 
-        //Initialize health system in classes
+        //Initialize health system in classes method
         public HealthSystem(int healthMax)
         {
             _healthMax = healthMax;
@@ -36,7 +36,7 @@ namespace com.LazyGames.Chispop
             {
                 _health = 0;
             }
-            //If it is suscribed to the event change the health bar 
+            //If it is subscribed to the event change the health bar 
             if (OnHealthChanged != null)
             {
                 OnHealthChanged(this,EventArgs.Empty);
